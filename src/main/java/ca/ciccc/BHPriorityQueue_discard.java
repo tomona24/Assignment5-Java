@@ -2,16 +2,16 @@ package ca.ciccc;
 
 import java.util.Arrays;
 
-public class BHPriorityQueue<K extends Comparable, V> implements VCPriorityQueue<K, V> {
+public class BHPriorityQueue_discard implements VCPriorityQueue {
     private Entry[] elementData;
     private int size;
     private static final int DEFAULT_CAPACITY = 100;
 
-    public BHPriorityQueue() {
+    public BHPriorityQueue_discard() {
         elementData = new Entry[DEFAULT_CAPACITY];
     }
 
-    public  BHPriorityQueue(int initialSize){
+    public BHPriorityQueue_discard(int initialSize){
         elementData = new Entry[initialSize];
     }
 

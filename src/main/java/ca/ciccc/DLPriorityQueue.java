@@ -1,36 +1,28 @@
 package ca.ciccc;
 
 import java.util.LinkedList;
+import java.util.List;
 
-public class DLPriorityQueue implements VCPriorityQueue {
-    private Node head, tail;
-    private int size;
+public class DLPriorityQueue<K extends Comparable, V> implements VCPriorityQueue<K, V> {
+    private List<Entry<K, V>> queue;
 
-    private static class Node<E> {
-        Entry data;
-        Node next;
-        Node prev;
-
-        Node(Entry data, Node next, Node prev) {
-            this.data = data;
-            this.next = next;
-            this.prev = prev;
-        }
+    public DLPriorityQueue() {
+        queue = new LinkedList<>();
     }
 
     @Override
     public int size() {
-        return size;
+        return queue.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return queue.isEmpty();
     }
 
 
     private boolean checkBigger(Comparable bigger, Comparable smaller) {
-        if(bigger.compareTo(smaller) >= 0) {
+        if(bigger.compareTo(smaller) > 0) {
             return true;
         }  else {
             return false;
@@ -38,66 +30,30 @@ public class DLPriorityQueue implements VCPriorityQueue {
     }
 
     @Override
-    public Entry enqueue(Comparable key, Object value) throws IllegalArgumentException {
+    public Entry<K, V> enqueue(K key, V value) throws IllegalArgumentException {
         if (key == null) {
             throw new IllegalArgumentException("The key is required.");
         }
         Entry newEntry = new Entry(key, value);
-        Node newNode = new Node(newEntry, null, null);
-        Node tempHead = head;
-        Node tempTail = tail;
-        if (isEmpty()) {
-            head = newNode;
-            tail = newNode;
-        } else if (size == 1) {
-            if (checkBigger(key, head.data.getKey())) {
-                tempHead.next = newNode;
-                newNode.prev = tempHead;
-                tail = newNode;
-            } else {
-                newNode.next = tempHead;
-                tempHead.prev = newNode;
-                head = newNode;
-                tail = tempHead;
+        int index = 0;
+        for (int i = 0; i < queue.size() ; i++) {
+            if(checkBigger(key, queue.get(i).getKey())) {
+                index = i + 1;
             }
-        } else if (checkBigger(key, tail.data.getKey())) {
-            tempTail.next = newNode;
-            newNode.prev = tempTail;
-            tail = newNode;
-        } else if (checkBigger(head.data.getKey(), key)) {
-            tempHead.prev = newNode;
-            newNode.next = tempHead;
-            head = newNode;
-        } else {
-            while (checkBigger(key, tempHead.data.getKey())) {
-                tempHead = tempHead.next;
-            }
-            tempHead.prev.next = newNode;
-            tempHead.prev = newNode;
-            newNode.prev = tempHead.prev;
-            newNode.next = tempHead;
         }
-        size++;
+        queue.add(index, newEntry);
         return newEntry;
     }
 
     @Override
     public Entry peek() {
-        return head.data;
+        return queue.get(0);
     }
 
     @Override
     public Entry dequeueMin() {
         if (!isEmpty()) {
-            Entry min = head.data;
-            if (size == 1) {
-                head = null;
-                tail = null;
-            } else if (size > 1) {
-                head.next.prev = null;
-                head = head.next;
-            }
-            size--;
+            Entry min = queue.remove(0);
             return min;
         }
         return null;
@@ -107,24 +63,18 @@ public class DLPriorityQueue implements VCPriorityQueue {
     public VCPriorityQueue merge(VCPriorityQueue other) {
         while (!other.isEmpty()) {
             Entry temp = other.dequeueMin();
-            System.out.println(temp.getValue());
-            enqueue(temp.getKey(), temp.getValue());
-            System.out.println(this);
+            enqueue((K)temp.getKey(), (V)temp.getValue());
         }
         return this;
     }
 
     @Override
     public String toString() {
-        // TODO
-        // ex) "Obj0"=="Obj1"==null
-        Node node = head;
         String s = "";
-        while (node != null) {
-            s += node.data.getValue().toString() + "=";
-            node = node.next;
+        for (int i = 0; i < queue.size(); i++) {
+            s += "key=" + queue.get(i).getKey().toString() +" value=" +  queue.get(i).getValue().toString() +"\n";
         }
-        s += "null";
         return s;
     }
+
 }

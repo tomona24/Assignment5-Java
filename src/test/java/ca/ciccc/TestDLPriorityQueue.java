@@ -1,14 +1,16 @@
 package ca.ciccc;
 
-import java.util.PriorityQueue;
-
 public class TestDLPriorityQueue {
     public static void main(String[] args) {
         DLPriorityQueue DLPtest = new DLPriorityQueue();
         System.out.println(DLPtest.isEmpty());
         System.out.println("add");
         DLPtest.enqueue(10, "Japan");
+        System.out.println(DLPtest);
+
         DLPtest.enqueue(50, "Korea");
+        System.out.println(DLPtest);
+
         DLPtest.enqueue(70, "Brazil");
         DLPtest.enqueue(60, "Australia");
         DLPtest.enqueue(50, "Canada");
@@ -32,7 +34,7 @@ public class TestDLPriorityQueue {
         DLPtest.enqueue(10, "Brazil");
 
 
-        DLPriorityQueue DLPtest2 = new DLPriorityQueue();
+        DLPriorityQueue_discard DLPtest2 = new DLPriorityQueue_discard();
         DLPtest2.enqueue(1000, "China");
         DLPtest2.enqueue(10, "the U.S");
         DLPtest2.enqueue(40, "Italy");

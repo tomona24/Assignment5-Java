@@ -7,6 +7,7 @@ public class TestALPriorityQueue {
         ALPriorityQueue testALP = new ALPriorityQueue();
 
         System.out.println(testALP.isEmpty());
+        System.out.println(testALP.size());
         System.out.println("add");
         testALP.enqueue(10, "Japan");
         testALP.enqueue(50, "Korea");
@@ -15,11 +16,13 @@ public class TestALPriorityQueue {
         testALP.enqueue(50, "Canada");
         System.out.println(testALP);
         System.out.println("size Again");
+        System.out.println(testALP.size());
         System.out.println("size end");
 
 
         System.out.println(testALP.peek().getValue().toString());
 
+        System.out.println("dequeue");
         System.out.println(testALP.dequeueMin().getValue().toString());
         System.out.println(testALP);
         System.out.println(testALP.size());
@@ -39,7 +42,7 @@ public class TestALPriorityQueue {
 
         ALPriorityQueue testALP2 = new ALPriorityQueue();
 
-        testALP2.enqueue(1000, "China");
+        testALP2.enqueue(3, "China");
         testALP2.enqueue(10, "the U.S");
         testALP2.enqueue(40, "Italy");
 
