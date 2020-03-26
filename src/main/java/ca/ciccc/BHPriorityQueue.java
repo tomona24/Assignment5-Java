@@ -16,6 +16,10 @@ public class BHPriorityQueue<K extends Comparable, V> implements VCPriorityQueue
     }
 
 
+    public Entry[] getElementData() {
+        return elementData;
+    }
+
     @Override
     public int size() {
         return size;
@@ -116,5 +120,7 @@ public class BHPriorityQueue<K extends Comparable, V> implements VCPriorityQueue
         }
         return Arrays.toString(arr) ;
     }
+
+
 }
 

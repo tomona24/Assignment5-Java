@@ -96,6 +96,6 @@ public class ALPriorityQueueTest {
         testALP5.enqueue(10, "the U.S");
         testALP5.enqueue(40, "Italy");
 
-        Assert.assertEquals(testALP3, testALP1.merge(testALP5));
+        Assert.assertEquals(testALP3.toString(), testALP1.merge(testALP5).toString());
     }
 }
