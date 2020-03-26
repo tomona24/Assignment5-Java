@@ -8,33 +8,19 @@ import static org.junit.Assert.*;
 
 public class ALPriorityQueueTest {
     private static ALPriorityQueue testALP0 = new ALPriorityQueue<>();
-    private static ALPriorityQueue testALP1 = new ALPriorityQueue<>();
     private static ALPriorityQueue testALP2 = new ALPriorityQueue<>();
-    private static ALPriorityQueue testALP3 = new ALPriorityQueue<>();
 
 
     @BeforeClass
     public static void setup(){
 
 
-        testALP1.enqueue(10, "Japan");
-        testALP1.enqueue(50, "Korea");
-        testALP1.enqueue(70, "Brazil");
-        testALP1.enqueue(60, "Australia");
-        testALP1.enqueue(50, "Canada");
 
         testALP2.enqueue(30, "China");
         testALP2.enqueue(10, "the U.S");
         testALP2.enqueue(40, "Italy");
 
 
-        testALP3.enqueue(50, "Korea");
-        testALP3.enqueue(70, "Brazil");
-        testALP3.enqueue(60, "Australia");
-        testALP3.enqueue(50, "Canada");
-        testALP3.enqueue(30, "China");
-        testALP3.enqueue(10, "the U.S");
-        testALP3.enqueue(40, "Italy");
 
 }
 
@@ -76,17 +62,39 @@ public class ALPriorityQueueTest {
 
     @Test
     public void dequeueMin() {
+
+        ALPriorityQueue testALP1 = new ALPriorityQueue<>();
+        testALP1.enqueue(10, "Japan");
+        testALP1.enqueue(50, "Korea");
+        testALP1.enqueue(70, "Brazil");
+        testALP1.enqueue(60, "Australia");
+        testALP1.enqueue(50, "Canada");
+
         Assert.assertEquals("Japan", testALP1.dequeueMin().getValue());
     }
 
 
     @Test
     public void merge() {
+        ALPriorityQueue testALP1 = new ALPriorityQueue<>();
+        testALP1.enqueue(50, "Korea");
+        testALP1.enqueue(70, "Brazil");
+        testALP1.enqueue(60, "Australia");
+        testALP1.enqueue(50, "Canada");
+
+        ALPriorityQueue testALP3 = new ALPriorityQueue<>();
+        testALP3.enqueue(50, "Korea");
+        testALP3.enqueue(70, "Brazil");
+        testALP3.enqueue(60, "Australia");
+        testALP3.enqueue(50, "Canada");
+        testALP3.enqueue(30, "China");
+        testALP3.enqueue(10, "the U.S");
+        testALP3.enqueue(40, "Italy");
+
         ALPriorityQueue testALP5 = new ALPriorityQueue<>();
         testALP5.enqueue(30, "China");
         testALP5.enqueue(10, "the U.S");
         testALP5.enqueue(40, "Italy");
-
 
         Assert.assertEquals(testALP3, testALP1.merge(testALP5));
     }

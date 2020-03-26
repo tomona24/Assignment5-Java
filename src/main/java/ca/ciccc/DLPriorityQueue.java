@@ -62,7 +62,7 @@ public class DLPriorityQueue<K extends Comparable, V> implements VCPriorityQueue
     @Override
     public VCPriorityQueue merge(VCPriorityQueue other) {
         while (!other.isEmpty()) {
-            Entry temp = other.dequeueMin();
+            Entry temp = ((DLPriorityQueue<K, V>) other).dequeueMin();
             enqueue((K)temp.getKey(), (V)temp.getValue());
         }
         return this;

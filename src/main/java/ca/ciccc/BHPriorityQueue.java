@@ -97,7 +97,7 @@ public class BHPriorityQueue<K extends Comparable, V> implements VCPriorityQueue
     @Override
     public VCPriorityQueue merge(VCPriorityQueue other) {
         while (!other.isEmpty()) {
-            Entry temp = other.dequeueMin();
+            Entry temp = ((BHPriorityQueue<K, V>) other).dequeueMin();
             enqueue(temp.getKey(), temp.getValue());
         }
         return this;

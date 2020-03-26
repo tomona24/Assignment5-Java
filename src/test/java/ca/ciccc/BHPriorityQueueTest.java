@@ -8,32 +8,16 @@ import static org.junit.Assert.*;
 
 public class BHPriorityQueueTest {
     private static BHPriorityQueue testBHP0 = new BHPriorityQueue<>();
-    private static BHPriorityQueue testBHP1 = new BHPriorityQueue<>();
     private static BHPriorityQueue testBHP2 = new BHPriorityQueue<>();
-    private static BHPriorityQueue testBHP3 = new BHPriorityQueue<>();
+
 
 
     @BeforeClass
     public static void setup(){
-        testBHP1.enqueue(10, "Japan");
-        testBHP1.enqueue(50, "Korea");
-        testBHP1.enqueue(70, "Brazil");
-        testBHP1.enqueue(60, "Australia");
-        testBHP1.enqueue(50, "Canada");
 
         testBHP2.enqueue(30, "China");
         testBHP2.enqueue(10, "the U.S");
         testBHP2.enqueue(40, "Italy");
-
-
-        testBHP3.enqueue(10, "the U.S");
-        testBHP3.enqueue(30, "China");
-        testBHP3.enqueue(40, "Italy");
-        testBHP3.enqueue(50, "Korea");
-        testBHP3.enqueue(50, "Canada");
-        testBHP3.enqueue(60, "Australia");
-        testBHP3.enqueue(70, "Brazil");
-
     }
 
     @Test
@@ -76,12 +60,34 @@ public class BHPriorityQueueTest {
 
     @Test
     public void dequeueMin() {
+        BHPriorityQueue testBHP1 = new BHPriorityQueue<>();
+        testBHP1.enqueue(10, "Japan");
+        testBHP1.enqueue(50, "Korea");
+        testBHP1.enqueue(70, "Brazil");
+        testBHP1.enqueue(60, "Australia");
+        testBHP1.enqueue(50, "Canada");
         Assert.assertEquals("Japan", testBHP1.dequeueMin().getValue());
     }
 
 
     @Test
     public void merge() {
+        BHPriorityQueue testBHP1 = new BHPriorityQueue<>();
+        testBHP1.enqueue(50, "Korea");
+        testBHP1.enqueue(70, "Brazil");
+        testBHP1.enqueue(60, "Australia");
+        testBHP1.enqueue(50, "Canada");
+
+        BHPriorityQueue testBHP3 = new BHPriorityQueue<>();
+        testBHP3.enqueue(10, "the U.S");
+        testBHP3.enqueue(30, "China");
+        testBHP3.enqueue(40, "Italy");
+        testBHP3.enqueue(50, "Korea");
+        testBHP3.enqueue(50, "Canada");
+        testBHP3.enqueue(60, "Australia");
+        testBHP3.enqueue(70, "Brazil");
+
+
         BHPriorityQueue testBHP5 = new BHPriorityQueue<>();
         testBHP5.enqueue(30, "China");
         testBHP5.enqueue(10, "the U.S");
